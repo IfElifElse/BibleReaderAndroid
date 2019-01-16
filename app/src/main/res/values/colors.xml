@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#ffffff</color>
+
+    <color name="lightSeaFoamGreen">#0ec9aa</color>
+    <color name="darkSeaFoamGreen">#008d6e</color>
+    <color name="lightMagenta">#e750b1</color>
+    <color name="darkMagenta">#ab0075</color>
+    <color name="lightFairBlue">#1c81c9</color>
+    <color name="darkFairBlue">#00458d</color>
+    <color name="lightOrange">#ff964b</color>
+    <color name="darkOrange">#c35a0f</color>
+    <color name="lightRed">#c80000</color>
+    <color name="darkRed">#8c0000</color>
+    <color name="lightGreen">#5bc33c</color>
+    <color name="darkGreen">#40892a</color>
+    <color name="lightGrey">#969696</color>
+    <color name="darkGrey">#323232</color>
+
+    <color name="textLight">#f2f2f2</color>
+    <color name="textFair">#999999</color>
+    <color name="textDark">#0d0d0d</color>
+</resources>
