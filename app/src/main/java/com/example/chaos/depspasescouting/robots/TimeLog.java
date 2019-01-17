@@ -68,6 +68,7 @@ public class TimeLog {
             else if (event == Event.UNDEFENSE) {
                 pausedTime += time - pausedStart;
             }
+            /*
             else if (event == Event.SCORELO) {
                 Long totalTime = pickupTime - time - pausedTime;
                 if (pieceType.equals("ball")) { loBallLaps.add(totalTime); }
@@ -78,6 +79,7 @@ public class TimeLog {
                 if (pieceType.equals("ball")) { hiBallLaps.add(totalTime); }
                 else if (pieceType.equals("disc")) { hiDiscLaps.add(totalTime); }
             }
+            */
         }
         ArrayList<ArrayList<Long>> returns = new ArrayList<>();
         returns.add(loBallLaps);

@@ -16,7 +16,12 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="50dp"
         android:background="@color/lightFairBlue"
+        android:fontFamily="monospace"
         android:text="Undo"
+        android:textAllCaps="false"
+        android:textColor="@color/textDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/undoLayout"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +29,7 @@
     <TableLayout
         android:id="@+id/scoringLayout"
         android:layout_width="0dp"
-        android:layout_height="415dp"
+        android:layout_height="460dp"
         app:layout_constraintBottom_toTopOf="@+id/defendClimbLayout"
         app:layout_constraintEnd_toStartOf="@+id/undoLayout"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +86,11 @@
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/darkOrange"
-            android:text="Defend" />
+            android:fontFamily="monospace"
+            android:text="Defend"
+            android:textColor="@color/textLight"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/climbButton"
@@ -93,7 +102,11 @@
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/darkGreen"
-            android:text="Climb" />
+            android:fontFamily="monospace"
+            android:text="Climb"
+            android:textColor="@color/textLight"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
@@ -105,8 +118,11 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="2dp"
         android:background="@color/darkFairBlue"
+        android:fontFamily="monospace"
         android:text="Team Number:"
         android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/undoButton"
         app:layout_constraintEnd_toStartOf="@+id/roundNumberDisplay"
         app:layout_constraintStart_toEndOf="@+id/scoringLayout"
@@ -122,6 +138,8 @@
         android:background="@color/darkFairBlue"
         android:text="Round Number:"
         android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/undoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/teamNumberDisplay"
