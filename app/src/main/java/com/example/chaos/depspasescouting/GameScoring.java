@@ -18,6 +18,7 @@ public class GameScoring extends AppCompatActivity {
     private Robot robot;
 
     private LinearLayout changingLayout;
+    private LayoutParams defaultButtonParams;
 
     private TextView teamNumberDisplay;
     private TextView roundNumberDisplay;
@@ -25,22 +26,17 @@ public class GameScoring extends AppCompatActivity {
     // for use in the startLayout
     private Button startBallButton;
     private Button startDiscButton;
-    private LayoutParams startBallButtonParams;
-    private LayoutParams startDiscButtonParams;
+    private Button startNothingButton;
 
     // for use in the pickupLayout
     private Button pickedUpBallButton;
     private Button pickedUpDiscButton;
-    private LayoutParams pickedUpBallButtonParams;
-    private LayoutParams pickedUpDiscButtonParams;
 
     // for use in the scoringLayout
     private Button scoredHButton;
     private Button scoredMButton;
     private Button scoredLButton;
     private Button droppedButton;
-
-    private LayoutParams
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,24 +57,32 @@ public class GameScoring extends AppCompatActivity {
         teamNumberDisplay.setText("Team Number: " + teamNumber);
         roundNumberDisplay.setText("Round Number: " + roundNumber);
 
-        setButtonParams();
+        defaultButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+
+        initializeButtons();
+
+        startLayoutDisplay();
     }
 
-    private void setButtonParams() {
-        startBallButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        startDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+    private void initializeButtons() {
+        startBallButton = new Button(this);
+        startDiscButton = new Button(this);
+        startNothingButton = new Button(this);
 
-        pickedUpBallButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        pickedUpDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        pickedUpBallButton = new Button(this);
+        pickedUpDiscButton = new Button(this);
 
-        startDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        startDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        startDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        scoredHButton = new Button(this);
+        scoredMButton = new Button(this);
+        scoredLButton = new Button(this);
+        droppedButton = new Button(this);
     }
 
     private void deleteButton(View button) {
         ViewGroup parentView = (ViewGroup) button.getParent();
-        parentView.removeView(button);
+        if (parentView != null) {
+            parentView.removeView(button);
+        }
     }
 
     private void clearLayout() {
@@ -93,6 +97,8 @@ public class GameScoring extends AppCompatActivity {
 
     private void startLayoutDisplay() {
         clearLayout();
-
+        changingLayout.addView(startBallButton, defaultButtonParams);
+        changingLayout.addView(startDiscButton, defaultButtonParams);
+        changingLayout.addView(startNothingButton, defaultButtonParams);
     }
 }
