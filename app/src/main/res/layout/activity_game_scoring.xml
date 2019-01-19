@@ -16,40 +16,130 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="50dp"
         android:background="@color/lightFairBlue"
+        android:fontFamily="monospace"
         android:text="Undo"
+        android:textAllCaps="false"
+        android:textColor="@color/textDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/undoLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/scoringLayout"
-        android:layout_width="0dp"
-        android:layout_height="415dp"
-        android:layout_marginStart="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/defendClimbLayout"
-        app:layout_constraintEnd_toStartOf="@+id/undoLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_width="512dp"
+        android:layout_height="460dp"
+        android:orientation="vertical">
 
-        <TableRow
+        <!--
+        <Button
+            android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="115dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:textColor="@color/textDark"
+            android:background="@color/lightSeaFoamGreen"
+            android:fontFamily="monospace"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="Low" />
 
-        <TableRow
+        <Button
+            android:id="@+id/button2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="115dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:textColor="@color/textDark"
+            android:background="@color/yellow"
+            android:fontFamily="monospace"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="Middle" />
 
-        <TableRow
+        <Button
+            android:id="@+id/button3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="115dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:textColor="@color/textDark"
+            android:background="@color/lightGreen"
+            android:fontFamily="monospace"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="High" />
 
-        <TableRow
+        <Button
+            android:id="@+id/button4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="115dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginRight="1dp"
+            android:textColor="@color/textDark"
+            android:background="@color/darkRed"
+            android:fontFamily="monospace"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="Drop" />
+        -->
+        <!--
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/textLight"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:text="Ball" />
 
-        </TableRow>
-    </TableLayout>
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/textLight"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:text="Disc" />
+        -->
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/textLight"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:text="Start with Ball" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/textLight"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:text="Start with Disc" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/undoLayout"
@@ -82,7 +172,11 @@
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/darkOrange"
-            android:text="Defned" />
+            android:fontFamily="monospace"
+            android:text="Protec"
+            android:textColor="@color/textLight"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/climbButton"
@@ -94,7 +188,11 @@
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/darkGreen"
-            android:text="Climb" />
+            android:fontFamily="monospace"
+            android:text="Climb"
+            android:textColor="@color/textLight"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
@@ -106,8 +204,11 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="2dp"
         android:background="@color/darkFairBlue"
+        android:fontFamily="monospace"
         android:text="Team Number:"
         android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/undoButton"
         app:layout_constraintEnd_toStartOf="@+id/roundNumberDisplay"
         app:layout_constraintStart_toEndOf="@+id/scoringLayout"
@@ -123,6 +224,8 @@
         android:background="@color/darkFairBlue"
         android:text="Round Number:"
         android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/undoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/teamNumberDisplay"
