@@ -26,15 +26,51 @@
         app:layout_constraintStart_toStartOf="@+id/undoLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ViewSwitcher
+        android:id="@+id/scoringLayoutSwitcher"
+        android:layout_width="512dp"
+        android:layout_height="460dp">
+
     <LinearLayout
-        android:id="@+id/scoringLayout"
+        android:id="@+id/scoringLayoutPickup"
         android:layout_width="512dp"
         android:layout_height="460dp"
         android:orientation="vertical">
 
-        <!--
         <Button
-            android:id="@+id/button"
+            android:id="@+id/pickedUpBallButton"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/textLight"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:text="Picked Up Ball" />
+
+        <Button
+            android:id="@+id/pickedUpDiscButton"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/textLight"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:text="Picked Up Disc" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scoringLayoutScore"
+        android:layout_width="512dp"
+        android:layout_height="460dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/scoredLowButton"
             android:layout_width="match_parent"
             android:layout_height="115dp"
             android:layout_marginBottom="1dp"
@@ -47,7 +83,7 @@
             android:text="Low" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/scoredMiddleButton"
             android:layout_width="match_parent"
             android:layout_height="115dp"
             android:layout_marginTop="1dp"
@@ -61,7 +97,7 @@
             android:text="Middle" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/scoredHighButton"
             android:layout_width="match_parent"
             android:layout_height="115dp"
             android:layout_marginTop="1dp"
@@ -75,7 +111,7 @@
             android:text="High" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/droppedButton"
             android:layout_width="match_parent"
             android:layout_height="115dp"
             android:layout_marginTop="1dp"
@@ -87,59 +123,40 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:text="Drop" />
-        -->
-        <!--
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scoringLayoutStart"
+        android:layout_width="512dp"
+        android:layout_height="460dp"
+        android:orientation="vertical">
+
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/startWithBallButton"
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginRight="1dp"
             android:layout_marginBottom="1dp"
             android:background="@color/colorPrimaryDark"
+            android:text="Start with Ball"
             android:textColor="@color/textLight"
-            android:textStyle="bold"
             android:textSize="24dp"
-            android:text="Ball" />
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button6"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/textLight"
-            android:textStyle="bold"
-            android:textSize="24dp"
-            android:text="Disc" />
-        -->
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@color/textLight"
-            android:textStyle="bold"
-            android:textSize="24dp"
-            android:text="Start with Ball" />
-
-        <Button
-            android:id="@+id/button8"
+            android:id="@+id/startWithDiscButton"
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginRight="1dp"
             android:layout_marginBottom="1dp"
             android:background="@color/colorPrimary"
+            android:text="Start with Disc"
             android:textColor="@color/textLight"
-            android:textStyle="bold"
             android:textSize="24dp"
-            android:text="Start with Disc" />
+            android:textStyle="bold" />
 
     </LinearLayout>
+    </ViewSwitcher>
 
     <LinearLayout
         android:id="@+id/undoLayout"
@@ -148,7 +165,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/scoringLayout"
+        app:layout_constraintStart_toEndOf="@+id/scoringLayoutSwitcher"
         app:layout_constraintTop_toBottomOf="@+id/undoButton">
 
     </LinearLayout>
@@ -161,7 +178,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/undoLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scoringLayout">
+        app:layout_constraintTop_toBottomOf="@+id/scoringLayoutSwitcher">
 
         <Button
             android:id="@+id/defendButton"
@@ -189,7 +206,7 @@
             android:layout_weight="1"
             android:background="@color/darkGreen"
             android:fontFamily="monospace"
-            android:text="Climb"
+            android:text="Attac"
             android:textColor="@color/textLight"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -211,7 +228,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/undoButton"
         app:layout_constraintEnd_toStartOf="@+id/roundNumberDisplay"
-        app:layout_constraintStart_toEndOf="@+id/scoringLayout"
+        app:layout_constraintStart_toEndOf="@+id/scoringLayoutSwitcher"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

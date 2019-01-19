@@ -58,47 +58,35 @@ public class GameScoring extends AppCompatActivity {
         roundNumberDisplay.setText("Round Number: " + roundNumber);
 
         defaultButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-
-        initializeButtons();
-
-        startLayoutDisplay();
     }
 
-    private void initializeButtons() {
-        startBallButton = new Button(this);
-        startDiscButton = new Button(this);
-        startNothingButton = new Button(this);
+    public void startBallButtonPressed(View v) {
 
-        pickedUpBallButton = new Button(this);
-        pickedUpDiscButton = new Button(this);
+    }
+    public void startDiscButtonPressed(View v) {
 
-        scoredHButton = new Button(this);
-        scoredMButton = new Button(this);
-        scoredLButton = new Button(this);
-        droppedButton = new Button(this);
+    }
+    public void startNothingButtonPressed(View v) {
+
     }
 
-    private void deleteButton(View button) {
-        ViewGroup parentView = (ViewGroup) button.getParent();
-        if (parentView != null) {
-            parentView.removeView(button);
-        }
+    public void pickedUpBallButtonPressed(View v) {
+
+    }
+    public void pickedUpDiscButtonPressed(View v) {
+
     }
 
-    private void clearLayout() {
-        deleteButton(startBallButton);
-        deleteButton(startDiscButton);
-        deleteButton(pickedUpBallButton);
-        deleteButton(pickedUpDiscButton);
-        deleteButton(scoredHButton);
-        deleteButton(scoredMButton);
-        deleteButton(scoredLButton);
-    }
+    public void scoredHButton(View v) {
 
-    private void startLayoutDisplay() {
-        clearLayout();
-        changingLayout.addView(startBallButton, defaultButtonParams);
-        changingLayout.addView(startDiscButton, defaultButtonParams);
-        changingLayout.addView(startNothingButton, defaultButtonParams);
+    }
+    public void scoredMButton(View v) {
+
+    }
+    public void scoredLButton(View v) {
+
+    }
+    public void droppedButton(View v) {
+        
     }
 }
