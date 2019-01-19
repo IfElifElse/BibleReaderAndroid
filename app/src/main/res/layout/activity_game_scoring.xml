@@ -25,6 +25,7 @@
         android:id="@+id/scoringLayout"
         android:layout_width="0dp"
         android:layout_height="415dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintBottom_toTopOf="@+id/defendClimbLayout"
         app:layout_constraintEnd_toStartOf="@+id/undoLayout"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +82,7 @@
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/darkOrange"
-            android:text="Defend" />
+            android:text="Defned" />
 
         <Button
             android:id="@+id/climbButton"
