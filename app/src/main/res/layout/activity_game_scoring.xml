@@ -26,34 +26,18 @@
         app:layout_constraintStart_toStartOf="@+id/undoLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/scoringLayout"
         android:layout_width="0dp"
         android:layout_height="460dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/defendClimbLayout"
         app:layout_constraintEnd_toStartOf="@+id/undoLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </TableRow>
-    </TableLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/undoLayout"

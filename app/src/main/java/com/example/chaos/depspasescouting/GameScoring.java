@@ -2,9 +2,14 @@ package com.example.chaos.depspasescouting;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.chaos.depspasescouting.robots.Robot;
@@ -12,18 +17,30 @@ import com.example.chaos.depspasescouting.robots.Robot;
 public class GameScoring extends AppCompatActivity {
     private Robot robot;
 
+    private LinearLayout changingLayout;
+
+    private TextView teamNumberDisplay;
+    private TextView roundNumberDisplay;
+
     // for use in the startLayout
     private Button startBallButton;
     private Button startDiscButton;
+    private LayoutParams startBallButtonParams;
+    private LayoutParams startDiscButtonParams;
 
     // for use in the pickupLayout
     private Button pickedUpBallButton;
     private Button pickedUpDiscButton;
+    private LayoutParams pickedUpBallButtonParams;
+    private LayoutParams pickedUpDiscButtonParams;
 
     // for use in the scoringLayout
-    private Button scoredHiButton;
-    private Button scoredMdButton;
-    private Button scoredLoButton;
+    private Button scoredHButton;
+    private Button scoredMButton;
+    private Button scoredLButton;
+    private Button droppedButton;
+
+    private LayoutParams
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +54,45 @@ public class GameScoring extends AppCompatActivity {
 
         setContentView(R.layout.activity_game_scoring);
 
-        TextView teamNumberDisplay = findViewById(R.id.teamNumberDisplay);
+        changingLayout = findViewById(R.id.scoringLayout);
+
+        teamNumberDisplay = findViewById(R.id.teamNumberDisplay);
+        roundNumberDisplay = findViewById(R.id.roundNumberDisplay);
         teamNumberDisplay.setText("Team Number: " + teamNumber);
-        TextView roundNumberDisplay = findViewById(R.id.roundNumberDisplay);
         roundNumberDisplay.setText("Round Number: " + roundNumber);
+
+        setButtonParams();
+    }
+
+    private void setButtonParams() {
+        startBallButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        startDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+
+        pickedUpBallButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        pickedUpDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+
+        startDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        startDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        startDiscButtonParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+    }
+
+    private void deleteButton(View button) {
+        ViewGroup parentView = (ViewGroup) button.getParent();
+        parentView.removeView(button);
     }
 
     private void clearLayout() {
-        startBallButton.
+        deleteButton(startBallButton);
+        deleteButton(startDiscButton);
+        deleteButton(pickedUpBallButton);
+        deleteButton(pickedUpDiscButton);
+        deleteButton(scoredHButton);
+        deleteButton(scoredMButton);
+        deleteButton(scoredLButton);
     }
 
     private void startLayoutDisplay() {
+        clearLayout();
 
     }
 }
