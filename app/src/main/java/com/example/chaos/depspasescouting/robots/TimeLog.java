@@ -3,6 +3,7 @@ package com.example.chaos.depspasescouting.robots;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Stack;
 
 public class TimeLog {
     private HashMap<Long, Event> timestamps; // a list of events, each tied to a time.
@@ -87,5 +88,23 @@ public class TimeLog {
         returns.add(loDiscLaps);
         returns.add(hiDiscLaps);
         return returns;
+    }
+
+    public Stack<Long> getAllTimesAsStack() {
+        ArrayList<Long> timesArrayList = new ArrayList<>(this.timestamps.keySet());
+        Stack<Long> timesStack = new Stack<>();
+        for (Long time : timesArrayList) {
+            timesStack.push(time);
+        }
+        return timesStack;
+    }
+
+    public Stack<Event> getAllEventsAsStack() {
+        ArrayList<Long> timesArrayList = new ArrayList<>(this.timestamps.keySet());
+        Stack<Event> eventsStack = new Stack<>();
+        for (Long time : timesArrayList) {
+            eventsStack.push(this.timestamps.get(time));
+        }
+        return eventsStack;
     }
 }

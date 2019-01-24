@@ -1,5 +1,7 @@
 package com.example.chaos.depspasescouting.robots;
 
+import java.util.Stack;
+
 public class Robot {
 
     private int number; // the number of the team that owns the robot
@@ -57,7 +59,12 @@ public class Robot {
      */
     public void startRound(Event startsWithPiece) {
         this.eventLog.log(Event.START);
-        this.eventLog.log(startsWithPiece);
+        if (startsWithPiece == Event.BALL) {
+            setHasBall();
+        }
+        else if (startsWithPiece == Event.DISC) {
+            setHasDisc();
+        }
     }
 
     /**
@@ -87,7 +94,7 @@ public class Robot {
     /**
      * Increments the number of hi scored balls and adds a SCORE_BALL_H event to the eventLog.
      */
-    public void incBallsScoreH() {
+    public void incBallsScoredH() {
         this.ballsScoredH ++;
         this.hasBall = false;
         this.eventLog.log(Event.SCORE_BALL_H);
@@ -120,17 +127,42 @@ public class Robot {
     /**
      * Increments the number of hi scored discs and adds a SCORE_DISC_H event to the eventLog.
      */
-    public void incDiscsScoredHi() {
+    public void incDiscsScoredH() {
         this.discsScoredH ++;
         this.hasDisc = false;
         this.eventLog.log(Event.SCORE_DISC_H);
     }
 
     /**
-     * Switches the value of isDefending.
+     * Sets hasBall to false and adds a DROP_BALL event to the eventLog.
      */
-    public void toggleDefending() {
-        this.isDefending = ! this.isDefending;
+    public void setDroppedBall() {
+        this.hasBall = false;
+        this.eventLog.log(Event.DROP_BALL);
+    }
+
+    /**
+     * Sets hasDisc to false and adds a DROP_DISC event to the eventLog.
+     */
+    public void setDroppedDisc() {
+        this.hasDisc = false;
+        this.eventLog.log(Event.DROP_DISC);
+    }
+
+    /**
+     * Switches isDefending to true and adds a DEFENSE event to the eventLog.
+     */
+    public void setDefending() {
+        this.isDefending = true;
+        this.eventLog.log(Event.DEFENSE);
+    }
+
+    /**
+     * Switches isDefending to false and adds a UNDEFENSE event to the eventLog.
+     */
+    public void setUndefending() {
+        this.isDefending = false;
+        this.eventLog.log(Event.UNDEFENSE);
     }
 
     /**
@@ -191,6 +223,8 @@ public class Robot {
     public boolean getIsDefending() { return isDefending; }
     public boolean getHasBall() { return hasBall; }
     public boolean getHasDisc() { return hasDisc; }
+    public Stack<Long> getAllTimesAsStack() { return eventLog.getAllTimesAsStack(); }
+    public Stack<Event> getAllEventsAsStack() { return eventLog.getAllEventsAsStack(); }
     /** Returns true if the robot is in control of a game piece. */
     public boolean getHasPiece() { return (this.hasBall || this.hasDisc); }
 }
