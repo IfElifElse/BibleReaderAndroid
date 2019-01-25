@@ -7,91 +7,130 @@
     tools:context=".ClimbedScreen">
 
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="512dp"
-        android:layout_height="253dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="283dp">
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="511dp"
+        android:layout_height="138dp"
+        android:background="@color/darkRed"
+        android:orientation="horizontal"
+        android:layout_marginEnd="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="128dp"
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
+            android:layout_marginRight="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:fontFamily="monospace"
-            android:text="0 pts"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_weight="1"
+            android:text="0 PTS" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="128dp"
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
+            android:layout_marginRight="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:fontFamily="monospace"
-            android:text="3 pts"
-            android:textAllCaps="true"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.502" />
+            android:layout_weight="1"
+            android:text="3 PTS" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="128dp"
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
+            android:layout_marginRight="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:text="6 pts"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.497" />
+            android:layout_weight="1"
+            android:text="6 PTS" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="128dp"
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
+            android:layout_marginRight="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:text="12 PTS"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.502" />
-    </android.support.constraint.ConstraintLayout>
+            android:layout_weight="1"
+            android:text="12 PTS" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ToggleButton"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="100dp" />
+    </RadioGroup>
+
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="511dp"
+        android:layout_height="138dp"
+        android:background="@color/darkFairBlue"
+        android:text="\nPoint scored from climbing"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="511dp"
+        android:layout_height="138dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="\nDid the robot help other"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <RadioGroup
-        android:layout_width="169dp"
-        android:layout_height="53dp"
-        tools:layout_editor_absoluteX="179dp"
-        tools:layout_editor_absoluteY="68dp" />
+        android:layout_width="511dp"
+        android:layout_height="138dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox"
-        tools:layout_editor_absoluteX="250dp"
-        tools:layout_editor_absoluteY="181dp" />
+        <RadioButton
+            android:id="@+id/radioButton26"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton27"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton28"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/darkGreen"
+            android:text="Yes with the 12 pts" />
+    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
