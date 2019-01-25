@@ -22,6 +22,7 @@ public class TimeLog {
      */
     public void log(Event event) {
         long time = System.currentTimeMillis();
+        System.out.println("im trying to log something lets see if it works");
         this.timestamps.put(time, event);
     }
 
@@ -94,6 +95,7 @@ public class TimeLog {
         ArrayList<Long> timesArrayList = new ArrayList<>(this.timestamps.keySet());
         Stack<Long> timesStack = new Stack<>();
         for (Long time : timesArrayList) {
+            System.out.println("long: " + time);
             timesStack.push(time);
         }
         return timesStack;

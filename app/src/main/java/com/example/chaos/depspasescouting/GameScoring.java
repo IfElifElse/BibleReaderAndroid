@@ -191,7 +191,11 @@ public class GameScoring extends AppCompatActivity {
         Stack<Event> allEvents = this.robot.getAllEventsAsStack();
 
         while (allTimes.peek() != null) {
-            TextView newEvent = new TextView();
+            TextView newEvent = new TextView(this);
+            newEvent.setText(allEvents.pop().name());
+            System.out.println("\n\n\n\n\n\n\n\n\n" + newEvent.getText());
+            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            undoLayout.addView(newEvent, lp);
         }
     }
 
