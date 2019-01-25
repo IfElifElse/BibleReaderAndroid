@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/textDark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ClimbedScreen">
@@ -13,51 +14,36 @@
         android:layout_height="138dp"
         android:background="@color/darkRed"
         android:orientation="horizontal"
-        android:layout_marginEnd="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <RadioButton
             android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:text="0 PTS" />
+            android:text="0 pts" />
 
         <RadioButton
             android:id="@+id/radioButton6"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:text="3 PTS" />
+            android:text="3 pts" />
 
         <RadioButton
             android:id="@+id/radioButton4"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:text="6 PTS" />
+            android:text="6 pts" />
 
         <RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="match_parent"
+            android:id="@+id/radioButton29"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:text="12 PTS" />
+            android:text="12 pts" />
 
     </RadioGroup>
 
@@ -95,9 +81,7 @@
         android:layout_width="511dp"
         android:layout_height="138dp"
         android:orientation="horizontal"
-        android:layout_marginRight="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
@@ -105,32 +89,28 @@
             android:id="@+id/radioButton26"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@color/darkGreen"
+            android:layout_marginEnd="1dp"
             android:layout_weight="1"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:text="RadioButton" />
+            android:text="No did not help another robot" />
 
         <RadioButton
             android:id="@+id/radioButton27"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginEnd="1dp"
+            android:background="@color/darkGreen"
             android:layout_weight="1"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:text="RadioButton" />
+            android:text="Yes with the 6 pts platform" />
 
         <RadioButton
             android:id="@+id/radioButton28"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="1dp"
             android:background="@color/darkGreen"
-            android:text="Yes with the 12 pts" />
+            android:layout_weight="1"
+            android:text="Yes with the 12 pts platform" />
     </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
