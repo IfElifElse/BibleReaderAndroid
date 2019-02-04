@@ -1,5 +1,6 @@
 package com.example.chaos.depspasescouting;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -18,6 +19,12 @@ import com.example.chaos.depspasescouting.robots.Event;
 import com.example.chaos.depspasescouting.robots.Robot;
 import com.example.chaos.depspasescouting.robots.TimeLog;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 public class GameScoring extends AppCompatActivity {
@@ -31,7 +38,11 @@ public class GameScoring extends AppCompatActivity {
     private Button defenseButton;
 
     private LinearLayout undoLayout;
-
+    
+    /**
+     * Instantiation function (like a constructor).
+     * @param savedInstanceState - who tf knows
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +61,7 @@ public class GameScoring extends AppCompatActivity {
         roundNumberDisplay = findViewById(R.id.roundNumberDisplay);
         defenseButton = findViewById(R.id.defenseButton);
         undoLayout = findViewById(R.id.undoLayout);
+        updateUndoLog();
 
         teamNumberDisplay.setText("Team Number: " + teamNumber);
         roundNumberDisplay.setText("Round Number: " + roundNumber);
@@ -59,40 +71,40 @@ public class GameScoring extends AppCompatActivity {
     /**
      * Called when the start with disc button in the start round layout is pressed.
      */
-    public void startBallButtonPressed(View v) {
+    public void startBallButton(View v) {
         this.robot.startRound(Event.BALL);
-        this.changingLayout.showNext();
+        this.showNext();
     }
     /**
      * Called when the start with disc button in the start round layout is pressed.
      */
-    public void startDiscButtonPressed(View v) {
+    public void startDiscButton(View v) {
         this.robot.startRound(Event.DISC);
-        this.changingLayout.showNext();
+        this.showNext();
     }
     /**
      * Called when the start with nothing button in the start round layout is pressed.
      */
-    public void startNothingButtonPressed(View v) {
+    public void startNothingButton(View v) {
         this.robot.startRound(Event.START);
         // skip over the scoring layout because we haven't "picked up" a piece to score yet
-        this.changingLayout.showNext();
-        this.changingLayout.showNext();
+        this.showNext();
+        this.showNext();
     }
 
     /**
      * Called when the ball button in the pick up layout is pressed.
      */
-    public void pickedUpBallButtonPressed(View v) {
+    public void pickedUpBallButton(View v) {
         this.robot.setHasBall();
-        this.changingLayout.showPrevious();
+        this.showPrevious();
     }
     /**
      * Called when the disc button in the pick up layout is pressed.
      */
-    public void pickedUpDiscButtonPressed(View v) {
+    public void pickedUpDiscButton(View v) {
         this.robot.setHasDisc();
-        this.changingLayout.showPrevious();
+        this.showPrevious();
     }
 
     /**
@@ -108,7 +120,7 @@ public class GameScoring extends AppCompatActivity {
         else {
             System.out.println("THIS IS BAD: scoredHButton was pressed even though the robot does not have a game piece");
         }
-        this.changingLayout.showNext(); // go to the pick up layout
+        this.showNext(); // go to the pick up layout
     }
     /**
      * Called when the scored middle button in the scoring layout is pressed.
@@ -123,7 +135,7 @@ public class GameScoring extends AppCompatActivity {
         else {
             System.out.println("THIS IS BAD: scoredMButton was pressed even though the robot does not have a game piece");
         }
-        this.changingLayout.showNext(); // go to the pick up layout
+        this.showNext(); // go to the pick up layout
     }
     /**
      * Called when the scored low button in the scoring layout is pressed.
@@ -138,7 +150,7 @@ public class GameScoring extends AppCompatActivity {
         else {
             System.out.println("THIS IS BAD: scoredLButton was pressed even though the robot does not have a game piece");
         }
-        this.changingLayout.showNext(); // go to the pick up layout
+        this.showNext(); // go to the pick up layout
     }
     /**
      * Called when the drop button in the scoring layout is pressed.
@@ -169,8 +181,36 @@ public class GameScoring extends AppCompatActivity {
             ((Button) v).setText("Protec");
             this.robot.setDefending();
         }
+        this.updateUndoLog();
     }
-
+    
+    /**
+     * Called when the undo button is pressed.
+     */
+    public void undoButton(View v) {
+        Event event = this.robot.undoLastAction();
+        this.updateUndoLog();
+        if (event == null) return;
+        View currentV = this.changingLayout.getCurrentView();
+        int vID = currentV.getId();
+        switch (event) {
+            case BALL:
+            case DISC:
+                showNext();
+                break;
+            case SCORE_BALL_L:
+            case SCORE_BALL_M:
+            case SCORE_BALL_H:
+            case DROP_BALL:
+            case SCORE_DISC_L:
+            case SCORE_DISC_M:
+            case SCORE_DISC_H:
+            case DROP_DISC:
+                showPrevious();
+                break;
+        }
+    }
+    
     private void showNext() {
         this.changingLayout.showNext();
         this.updateUndoLog();
@@ -183,26 +223,36 @@ public class GameScoring extends AppCompatActivity {
         // clear the undo layout
         final int childCount = undoLayout.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            View v = undoLayout.getChildAt(0);
-            undoLayout.removeView(v);
+            View v = undoLayout.getChildAt(0); // this is zero because we can't remove things from a list as we iterate through it
+            this.undoLayout.removeView(v);
         }
         //get the eventlog and update the undo layout with its contents.
-        Stack<Long> allTimes = this.robot.getAllTimesAsStack();
-        Stack<Event> allEvents = this.robot.getAllEventsAsStack();
+        HashMap<Long, Event> eventLog = this.robot.getEventLogCopy();
+        ArrayList<Long> allTimes = new ArrayList<>(eventLog.keySet());
+        Collections.sort(allTimes);
+        Collections.reverse(allTimes);
+        Long startTime = 0L;
+        for (Long time : allTimes) {
+            if (eventLog.get(time) == Event.START) {
+                startTime = time;
+                break;
+            }
+        }
+        
+        TextView newEvent;
 
-        while (allTimes.peek() != null) {
-            TextView newEvent = new TextView(this);
-            newEvent.setText(allEvents.pop().name());
-            System.out.println("\n\n\n\n\n\n\n\n\n" + newEvent.getText());
-            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-            undoLayout.addView(newEvent, lp);
+        for (Long time : allTimes) {
+            Event event = eventLog.get(time);
+            
+            newEvent = new TextView(this);
+            newEvent.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            newEvent.setText(event.name() + " at " + (time - startTime));
+            newEvent.setTextColor(Color.WHITE);
+            newEvent.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            newEvent.setPadding(1, 1, 1, 1);
+            
+            this.undoLayout.addView(newEvent);
         }
     }
 
-    /**
-     * Called when the undo button is pressed.
-     */
-    public void undoButton(View v) {
-        this.robot.undoLastAction();
-    }
 }

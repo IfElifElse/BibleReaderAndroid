@@ -3,16 +3,19 @@ package com.example.chaos.depspasescouting.robots;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.Stack;
 
 public class TimeLog {
     private HashMap<Long, Event> timestamps; // a list of events, each tied to a time.
+    private Stack<Long> undidTimes;
 
     /**
      * Constructor for TimeLog class. Initializes timestamps hashmap.
      */
     public TimeLog() {
         this.timestamps = new HashMap<>();
+        this.undidTimes = new Stack<>();
     }
 
     /**
@@ -22,7 +25,12 @@ public class TimeLog {
      */
     public void log(Event event) {
         long time = System.currentTimeMillis();
-        System.out.println("im trying to log something lets see if it works");
+        if (! this.undidTimes.empty()) {
+            time = undidTimes.pop();
+            System.out.println("using undidTime");
+        }
+        System.out.println("should log " + event.name() + " at time " + time);
+        if (event == Event.START) { time --; } // can't have 2 events at the same time, so we offset the start event by 1
         this.timestamps.put(time, event);
     }
 
@@ -32,8 +40,15 @@ public class TimeLog {
      * @return - the event that was removed.
      */
     public Event unlog() {
-        long lastTime = Collections.max(this.timestamps.keySet());
-        return this.timestamps.remove(lastTime);
+        Set<Long> allKeys = this.timestamps.keySet();
+        if (allKeys.size() > 0) {
+            Long lastTime = Collections.max(allKeys);
+            if (this.timestamps.get(lastTime) != Event.START) {
+                this.undidTimes.push(lastTime);
+                return this.timestamps.remove(lastTime);
+            }
+        }
+        return null;
     }
 
     /**
@@ -93,9 +108,9 @@ public class TimeLog {
 
     public Stack<Long> getAllTimesAsStack() {
         ArrayList<Long> timesArrayList = new ArrayList<>(this.timestamps.keySet());
+        Collections.sort(timesArrayList);
         Stack<Long> timesStack = new Stack<>();
         for (Long time : timesArrayList) {
-            System.out.println("long: " + time);
             timesStack.push(time);
         }
         return timesStack;
@@ -103,10 +118,15 @@ public class TimeLog {
 
     public Stack<Event> getAllEventsAsStack() {
         ArrayList<Long> timesArrayList = new ArrayList<>(this.timestamps.keySet());
+        Collections.sort(timesArrayList);
         Stack<Event> eventsStack = new Stack<>();
         for (Long time : timesArrayList) {
             eventsStack.push(this.timestamps.get(time));
         }
         return eventsStack;
+    }
+    
+    public HashMap<Long, Event> getTimestampsCopy() {
+        return (HashMap<Long, Event>) this.timestamps.clone();
     }
 }

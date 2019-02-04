@@ -1,5 +1,6 @@
 package com.example.chaos.depspasescouting.robots;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 public class Robot {
@@ -60,9 +61,11 @@ public class Robot {
     public void startRound(Event startsWithPiece) {
         this.eventLog.log(Event.START);
         if (startsWithPiece == Event.BALL) {
+            System.out.println("Starting with Event.BALL");
             setHasBall();
         }
         else if (startsWithPiece == Event.DISC) {
+            System.out.println("Starting with Event.DISC");
             setHasDisc();
         }
     }
@@ -168,8 +171,9 @@ public class Robot {
     /**
      * Removes the last logged event and reverts any changes to the robot's scoring that would have fired due to the event.
      */
-    public void undoLastAction() {
+    public Event undoLastAction() {
         Event event = this.eventLog.unlog();
+        if (event == null) return null;
         switch (event) {
             case START:
                 break;
@@ -207,6 +211,7 @@ public class Robot {
                 System.out.println("bro wtf my event isn't an event");
                 break;
         }
+        return event;
     }
 
     public int getNumber() { return number; }
@@ -225,6 +230,9 @@ public class Robot {
     public boolean getHasDisc() { return hasDisc; }
     public Stack<Long> getAllTimesAsStack() { return eventLog.getAllTimesAsStack(); }
     public Stack<Event> getAllEventsAsStack() { return eventLog.getAllEventsAsStack(); }
+    public HashMap<Long, Event> getEventLogCopy() {
+        return eventLog.getTimestampsCopy();
+    }
     /** Returns true if the robot is in control of a game piece. */
     public boolean getHasPiece() { return (this.hasBall || this.hasDisc); }
 }
