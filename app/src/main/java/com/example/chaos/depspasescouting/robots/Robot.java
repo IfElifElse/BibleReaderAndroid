@@ -12,8 +12,8 @@ public class Robot {
 
     private boolean startingBonus; // true if the robot started on the 6" platform and got the points.
     private EndingState endingState; // the hab platform position that the robot ended on.
-    private boolean helpedOtherRobot; // true if the robot assisted another robot in climbing the hab platform.
     private EndingState helpedState; // the hab platform position that the robot helped another robot end on.
+    private int rank; // the ranking that the scouter gives to the robot at the end.
 
     private int ballsScoredL; // the number of cargo the robot has successfully scored in the lower rocket level or the cargo ship
     private int ballsScoredM; // the number of cargo the robot has successfully scored in the middle rocket level
@@ -53,6 +53,9 @@ public class Robot {
         this.hasBall = false;
         this.hasDisc = false;
         this.eventLog = new TimeLog();
+        this.endingState = EndingState.LOW;
+        this.helpedState = null;
+        this.rank = 0;
     }
 
     /**
@@ -169,6 +172,34 @@ public class Robot {
     }
 
     /**
+     * Sets the ending state to what you click.
+     */
+    public void setEndingState(EndingState endingState) {
+        this.endingState = endingState;
+    }
+
+    /**
+     * Sets the helpedState to where the robot got helped with.
+     */
+    public void setHelpedState(EndingState endingState){
+        this.helpedState = endingState;
+    }
+
+    /**
+     * sets the ranking of the robot.
+     */
+    public void setRank(int ranking){
+        this.rank = ranking;
+    }
+    
+    /**
+     * Used to toggle the eventLog's remembertime functionality.
+     */
+    public void toggleRememberTime() {
+        this.eventLog.toggleRememberTime();
+    }
+
+    /**
      * Removes the last logged event and reverts any changes to the robot's scoring that would have fired due to the event.
      */
     public Event undoLastAction() {
@@ -211,6 +242,7 @@ public class Robot {
                 System.out.println("bro wtf my event isn't an event");
                 break;
         }
+
         return event;
     }
 
@@ -232,6 +264,10 @@ public class Robot {
     public Stack<Event> getAllEventsAsStack() { return eventLog.getAllEventsAsStack(); }
     public HashMap<Long, Event> getEventLogCopy() {
         return eventLog.getTimestampsCopy();
+    }
+    public Stack<Long> getUndidTimesCopy() { return eventLog.getUndidTimesCopy(); }
+    public boolean getRememberTime() {
+        return this.eventLog.getRememberTime();
     }
     /** Returns true if the robot is in control of a game piece. */
     public boolean getHasPiece() { return (this.hasBall || this.hasDisc); }

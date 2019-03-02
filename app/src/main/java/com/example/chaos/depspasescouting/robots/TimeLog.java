@@ -9,6 +9,7 @@ import java.util.Stack;
 public class TimeLog {
     private HashMap<Long, Event> timestamps; // a list of events, each tied to a time.
     private Stack<Long> undidTimes;
+    private boolean usingUndidTimes;
 
     /**
      * Constructor for TimeLog class. Initializes timestamps hashmap.
@@ -26,8 +27,11 @@ public class TimeLog {
     public void log(Event event) {
         long time = System.currentTimeMillis();
         if (! this.undidTimes.empty()) {
-            time = undidTimes.pop();
-            System.out.println("using undidTime");
+            long popped = undidTimes.pop();
+            if (this.usingUndidTimes) {
+                time = popped;
+                System.out.println("using undidTime");
+            }
         }
         System.out.println("should log " + event.name() + " at time " + time);
         if (event == Event.START) { time --; } // can't have 2 events at the same time, so we offset the start event by 1
@@ -49,6 +53,14 @@ public class TimeLog {
             }
         }
         return null;
+    }
+    
+    public void toggleRememberTime() {
+        this.usingUndidTimes = ! this.usingUndidTimes;
+    }
+    
+    public boolean getRememberTime() {
+        return this.usingUndidTimes;
     }
 
     /**
@@ -128,5 +140,9 @@ public class TimeLog {
     
     public HashMap<Long, Event> getTimestampsCopy() {
         return (HashMap<Long, Event>) this.timestamps.clone();
+    }
+    
+    public Stack<Long> getUndidTimesCopy() {
+        return (Stack<Long>) this.undidTimes.clone();
     }
 }

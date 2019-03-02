@@ -15,6 +15,7 @@
         android:layout_height="102dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="120dp"
         android:background="@color/lightFairBlue"
         android:fontFamily="monospace"
         android:onClick="undoButton"
@@ -206,6 +207,7 @@
         android:id="@+id/undoLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="120dp"
         android:gravity="top"
         android:orientation="vertical"
         android:visibility="visible"
@@ -213,6 +215,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/scoringLayoutSwitcher"
         app:layout_constraintTop_toBottomOf="@+id/undoButton">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/undidTimesLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/undoLayout"
+        app:layout_constraintTop_toBottomOf="@+id/toggleTimeRememberButton">
 
     </LinearLayout>
 
@@ -302,5 +319,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/teamNumberDisplay"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/toggleTimeRememberButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/darkMagenta"
+        android:onClick="toggleTimeRememberButton"
+        android:text="toggle time remember"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Borderless.Colored"
+        android:textColor="@color/textFair"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/undoLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/undoButton"
+        app:layout_constraintTop_toBottomOf="@+id/roundNumberDisplay" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/lightMagenta"
+        android:text="Time stack"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/textDark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/undidTimesLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/undoLayout"
+        app:layout_constraintTop_toBottomOf="@+id/toggleTimeRememberButton" />
 
 </android.support.constraint.ConstraintLayout>

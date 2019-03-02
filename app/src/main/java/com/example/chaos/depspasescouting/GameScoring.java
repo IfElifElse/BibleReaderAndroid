@@ -36,8 +36,10 @@ public class GameScoring extends AppCompatActivity {
     private TextView roundNumberDisplay;
 
     private Button defenseButton;
+    private Button toggleTimeRememberButton;
 
     private LinearLayout undoLayout;
+    private LinearLayout undidTimesLayout;
     
     /**
      * Instantiation function (like a constructor).
@@ -60,11 +62,15 @@ public class GameScoring extends AppCompatActivity {
         teamNumberDisplay = findViewById(R.id.teamNumberDisplay);
         roundNumberDisplay = findViewById(R.id.roundNumberDisplay);
         defenseButton = findViewById(R.id.defenseButton);
+        toggleTimeRememberButton = findViewById(R.id.toggleTimeRememberButton);
         undoLayout = findViewById(R.id.undoLayout);
+        undidTimesLayout = findViewById(R.id.undidTimesLayout);
         updateUndoLog();
 
-        teamNumberDisplay.setText("Team Number: " + teamNumber);
-        roundNumberDisplay.setText("Round Number: " + roundNumber);
+        teamNumberDisplay.setText("Team Number: " + this.robot.getNumber());
+        roundNumberDisplay.setText("Round Number: " + this.robot.getRoundNumber());
+        
+        toggleTimeRememberButton.setText("toggle time remember: " + this.robot.getRememberTime());
 
     }
 
@@ -183,6 +189,13 @@ public class GameScoring extends AppCompatActivity {
         }
         this.updateUndoLog();
     }
+    /**
+     * Changes the activity to the climbed screen activity.
+     * Called when the climb button is pressed.
+     */
+    public void climbButton(View v) {
+    
+    }
     
     /**
      * Called when the undo button is pressed.
@@ -210,6 +223,19 @@ public class GameScoring extends AppCompatActivity {
                 break;
         }
     }
+    /**
+     * Called when the time remember toggle button is pressed.
+     * @param v
+     */
+    public void toggleTimeRememberButton(View v) {
+        this.robot.toggleRememberTime();
+        boolean doingRememberTime = this.robot.getRememberTime();
+        this.toggleTimeRememberButton.setText("toggle time remember: " + doingRememberTime);
+        int colorID = doingRememberTime ? getResources().getColor(R.color.lightMagenta) : getResources().getColor(R.color.darkMagenta);
+        int textColorID = doingRememberTime ? getResources().getColor(R.color.textDark) : getResources().getColor(R.color.textFair);
+        this.toggleTimeRememberButton.setBackgroundColor(colorID);
+        this.toggleTimeRememberButton.setTextColor(textColorID);
+    }
     
     private void showNext() {
         this.changingLayout.showNext();
@@ -221,10 +247,15 @@ public class GameScoring extends AppCompatActivity {
     }
     private void updateUndoLog() {
         // clear the undo layout
-        final int childCount = undoLayout.getChildCount();
-        for (int i = 0; i < childCount; i++) {
+        int undoChildCount = undoLayout.getChildCount();
+        for (int i = 0; i < undoChildCount; i++) {
             View v = undoLayout.getChildAt(0); // this is zero because we can't remove things from a list as we iterate through it
             this.undoLayout.removeView(v);
+        }
+        int undidChildCount = undidTimesLayout.getChildCount();
+        for (int i = 0; i < undidChildCount; i++) {
+            View v = undidTimesLayout.getChildAt(0);
+            this.undidTimesLayout.removeView(v);
         }
         //get the eventlog and update the undo layout with its contents.
         HashMap<Long, Event> eventLog = this.robot.getEventLogCopy();
@@ -238,20 +269,32 @@ public class GameScoring extends AppCompatActivity {
                 break;
             }
         }
-        
-        TextView newEvent;
 
         for (Long time : allTimes) {
             Event event = eventLog.get(time);
             
-            newEvent = new TextView(this);
+            TextView newEvent = new TextView(this);
             newEvent.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             newEvent.setText(event.name() + " at " + (time - startTime));
-            newEvent.setTextColor(Color.WHITE);
+            newEvent.setTextColor(getResources().getColor(R.color.textLight));
             newEvent.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             newEvent.setPadding(1, 1, 1, 1);
             
             this.undoLayout.addView(newEvent);
+        }
+        
+        Stack<Long> undidTimes = this.robot.getUndidTimesCopy();
+        while (! undidTimes.empty()) {
+            Long time = undidTimes.pop();
+    
+            TextView newUndidTime = new TextView(this);
+            newUndidTime.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            newUndidTime.setText("" + (time - startTime));
+            newUndidTime.setTextColor(getResources().getColor(R.color.textLight));
+            newUndidTime.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            newUndidTime.setPadding(1, 1, 1, 1);
+            
+            this.undidTimesLayout.addView(newUndidTime);
         }
     }
 

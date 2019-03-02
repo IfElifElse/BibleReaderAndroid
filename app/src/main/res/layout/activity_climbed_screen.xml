@@ -4,94 +4,251 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/textDark"
     tools:context=".ClimbedScreen">
 
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="512dp"
-        android:layout_height="253dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="283dp">
+    <RadioGroup
+        android:id="@+id/climbRadioGroup"
+        android:layout_width="511dp"
+        android:layout_height="138dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/RatingtextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/climbTextView">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="128dp"
+        <RadioButton
+            android:id="@+id/noClimb"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
-            android:fontFamily="monospace"
-            android:text="0 pts"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_weight="1"
+            android:background="@color/darkRed"
+            android:onClick="onClimbSelect"
+            android:text="0 pts " />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="128dp"
+        <RadioButton
+            android:id="@+id/lowClimb"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
-            android:fontFamily="monospace"
-            android:text="3 pts"
-            android:textAllCaps="true"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.502" />
+            android:layout_weight="1"
+            android:background="@color/darkRed"
+            android:onClick="onClimbSelect"
+            android:text="3 pts " />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="128dp"
+        <RadioButton
+            android:id="@+id/midClimb"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
-            android:text="6 pts"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/startWithNothingButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.497" />
+            android:layout_weight="1"
+            android:background="@color/darkRed"
+            android:onClick="onClimbSelect"
+            android:text="6 pts " />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="128dp"
+        <RadioButton
+            android:id="@+id/highClimb"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
-            android:text="12 PTS"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.502" />
-    </android.support.constraint.ConstraintLayout>
+            android:layout_weight="1"
+            android:background="@color/darkRed"
+            android:onClick="onClimbSelect"
+            android:text="12 pts" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ToggleButton"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="100dp" />
+    </RadioGroup>
+
+
+    <TextView
+        android:id="@+id/climbTextView"
+        android:layout_width="0dp"
+        android:layout_height="138dp"
+        android:background="@color/darkFairBlue"
+        android:text="\nPoint scored from climbing"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/climbRadioGroup"
+        app:layout_constraintEnd_toStartOf="@+id/notes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/helpTextView"
+        android:layout_width="0dp"
+        android:layout_height="138dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="\nDid the robot help other"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/RatingtextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/climbRadioGroup" />
 
     <RadioGroup
-        android:layout_width="169dp"
-        android:layout_height="53dp"
-        tools:layout_editor_absoluteX="179dp"
-        tools:layout_editor_absoluteY="68dp" />
+        android:id="@+id/helpRadioGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RatingRadioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helpTextView">
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox"
-        tools:layout_editor_absoluteX="250dp"
-        tools:layout_editor_absoluteY="181dp" />
+        <RadioButton
+            android:id="@+id/noHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@color/darkGreen"
+            android:onClick="onHelpedSelect"
+            android:text="No did not help another robot" />
+
+        <RadioButton
+            android:id="@+id/midHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@color/darkGreen"
+            android:onClick="onHelpedSelect"
+            android:text="Yes with the 6 pts platform " />
+
+        <RadioButton
+            android:id="@+id/highHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@color/darkGreen"
+            android:onClick="onHelpedSelect"
+            android:text="Yes with the 12 pts platform" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/RatingtextView"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="276dp"
+        android:background="@color/darkMagenta"
+        android:text="Rate this Robot"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/textLight"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/helpTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/RatingRadioGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="110dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/climbRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/RatingtextView">
+
+        <RadioButton
+            android:id="@+id/oneRating"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@color/lightRed"
+            android:onClick="onRankSelect"
+            android:text="1 (this robot is not that good)" />
+
+        <RadioButton
+            android:id="@+id/twoRating"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@color/yellow"
+            android:onClick="onRankSelect"
+            android:text="2 (Robot was ok)               " />
+
+        <RadioButton
+            android:id="@+id/threeRating"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@color/lightGreen"
+            android:onClick="onRankSelect"
+            android:text="3 (we should pick this robot)  " />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/endButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="200dp"
+        android:background="@color/lightGrey"
+        android:onClick="onEnding"
+        android:text="End"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/helpRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/RatingRadioGroup" />
+
+    <EditText
+        android:id="@+id/notes"
+        android:layout_width="511dp"
+        android:layout_height="0dp"
+        android:background="@color/textLight"
+        android:hint="Add your comments here"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/RatingtextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/climbRadioGroup"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backButton"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/darkGrey"
+        android:onClick="onGoBack"
+        android:text="Back"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/endButton"
+        app:layout_constraintStart_toEndOf="@+id/helpRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/RatingRadioGroup" />
+
 
 </android.support.constraint.ConstraintLayout>
