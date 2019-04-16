@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DepSpaseScouting</string>
+    <string name="teamNumber">Team Number</string>
+    <string name="roundNumber">Round Number</string>
+    <string name="scouterName">Scouter Name</string>
+    <string name="go">Go</string>
+</resources>
